@@ -1,0 +1,64 @@
+
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group row">
+    <%= form.label :firstname, class: "form-lable-col col-4" %>
+    <div class="col-8">
+      <%= form.text_field :firstname, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :lastname, class: "form-label-col col-4" %>
+    <div class="col-8">
+      <%= form.text_field :lastname, class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :email, class: "form-label-col col-4" %>
+    <div class="col-8">
+      <%= form.text_field :email, class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :username, class: "form-label-col col-4" %>
+    <div class="col-8">
+      <%= form.text_field :username, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :password, class:"form-label-col col-4" %>
+    <div class="col-8">
+      <%= form.password_field :password, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :password_confirmation, class: "form-label-col col-4" %>
+    <div class="col-8">
+      <%= form.password_field :password_confirmation, class: "form-control" %>
+    </div>
+</div>
+
+  <div class="row">
+    <div class="col-2 mx-auto">
+    <%= form.submit nil, class: "btn btn-sm btn-outline-primary mx-auto" %>
+    </div>
+  </div>
+<% end %>
+
+
