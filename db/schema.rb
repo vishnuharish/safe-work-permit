@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_20_114121) do
+ActiveRecord::Schema.define(version: 2020_07_25_112902) do
+
+  create_table "safe_works", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "company_id"
+    t.string "company_name"
+    t.integer "crew_size"
+    t.boolean "is_snv_lavalin"
+    t.boolean "is_sub_contractor"
+    t.datetime "issued_datetime"
+    t.datetime "expired_datetime"
+    t.datetime "extended_datetime"
+    t.integer "extended_by"
+    t.text "emergency_meeting_point"
+    t.text "location"
+    t.text "description_of_work"
+    t.integer "approved_by"
+    t.datetime "approved_datetime"
+    t.integer "created_by"
+    t.datetime "updated_by"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_approved"
+    t.boolean "is_rejected"
+    t.text "comments"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "firstname"
@@ -21,6 +45,7 @@ ActiveRecord::Schema.define(version: 2020_07_20_114121) do
     t.integer "role"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "manager_id"
   end
 
 end

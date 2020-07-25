@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+<% SafeWork.column_names.each do |column|%>
+
+    <div class="row">
+        <div class="col-3">
+           <p><%= column.capitalize%></p>
+        </div>
+        <div class="col-4">
+            <p><%= @safe_work[column]%></p>
+        </div>
+    </div>
+
+
+<%end%>
+
+<% if @user.pending_for_approval.include?(@safe_work)%>
+
+<%= form_with scope: :safe_work_approve, url: safe_work_approve_path(@safe_work), method: :put do |form| %>
+    <%= render :partial => "approval_form", :locals => {:f => form}%>
+<% end %>
+<%else%>
+<%if !@safe_work.is_approved%>
+<%= link_to 'Edit', edit_safe_work_path(@safe_work) %>
+|<%end%>
+<%= link_to 'Back', safe_works_path %>
+<%end%>

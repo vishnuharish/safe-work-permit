@@ -1,0 +1,96 @@
+<p id="notice"><%= notice %></p>
+
+<div class="table-responsive">
+<caption>My Requests (<%="#{@safe_works.count}"%>)</caption>
+<table class="table table-sm table-bordered">
+  <thead>
+    <tr>
+    <th>Company Name</th>
+    <th>Crew Size</th>
+    <th>SNV Lavalin</th>
+    <th>Sub Contractor</th>
+    <th>Issued Date & Time</th>
+    <th>Extended  Date & Time</th>
+    <th>Extended By</th>
+    <th>Created Date & Time</th>
+    <th>Created By</th>
+    <th>Approver</th>
+    <th>Status</th>
+    <th>Approved/Rejected By</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @safe_works.each do |safe_work| %>
+      <tr>
+      <td><%= safe_work.company_name%></td>
+      <td><%= safe_work.crew_size%></td>
+      <td><%= safe_work.is_snv_lavalin%></td>
+      <td><%= safe_work.is_sub_contractor%></td>
+      <td><%= safe_work.issued_datetime%></td>
+      <td><%= safe_work.extended_datetime%></td>
+      <td><%= safe_work.extended%></td>
+      <td><%= safe_work.created_at%></td>
+      <td><%= safe_work.requested_by%></td>
+      <td><%= safe_work.approver%></td>
+      <td><%= safe_work.status%></td>
+      <td><%= safe_work.approved_or_rejected_by%></td>
+        <td><%= link_to 'Show', safe_work %></td>
+        <%if !safe_work.is_approved%>
+        <td><%= link_to 'Edit', edit_safe_work_path(safe_work)%></td>
+        <%else%>
+        <td></td>
+        <%end%>
+        <%if !safe_work.comments%>
+        <td><%= link_to 'Destroy', safe_work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%else%>
+          <td></td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+<% if !@pending_for_approval.empty? %>
+<div class="table-responsive">
+  <caption>Pending for My Approval(<%= @pending_for_approval.count%>)</caption>
+  <table class="table table-sm table-bordered">
+    <thead>
+      <tr>
+      <th>Company Name</th>
+      <th>Crew Size</th>
+      <th>SNV Lavalin</th>
+      <th>Sub Contractor</th>
+      <th>Issued Date & Time</th>
+      <th>Extended  Date & Time</th>
+      <th>Extended By</th>
+      <th>Created Date & Time</th>
+      <th>Created By</th>
+      <th></th>
+      </tr>
+  </thead>
+  <tbody>
+  <% @pending_for_approval.each do |pending| %>
+    <tr>
+    <td><%= pending.company_name%></td>
+    <td><%= pending.crew_size%></td>
+    <td><%= pending.is_snv_lavalin%></td>
+    <td><%= pending.is_sub_contractor%></td>
+    <td><%= pending.issued_datetime%></td>
+    <td><%= pending.extended_datetime%></td>
+    <td><%= pending.extended%></td>
+    <td><%= pending.created_at%></td>
+    <td><%= pending.requested_by%></td>
+      <td><%= link_to 'View', safe_work_path(pending)  %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+<%end%>
+
+
+
+<%= link_to 'New Safe Work', new_safe_work_path %>

@@ -7,8 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by_username(params[:email]) || User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      puts user.firstname
-      redirect_to dummy_index_path
+      redirect_to safe_works_path
     else 
       render 'new'
     end

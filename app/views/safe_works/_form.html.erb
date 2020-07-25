@@ -1,0 +1,80 @@
+<%= form_with(model: safe_work, local: true) do |form| %>
+  <% if safe_work.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(safe_work.errors.count, "error") %> prohibited this safe_work from being saved:</h2>
+
+      <ul>
+        <% safe_work.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group row">
+  <%= form.label :company_name, class: "form-lable-col col-4" %>
+  <div class="col-8">
+    <%= form.text_field :company_name, class: "form-control" %>
+  </div>
+</div>
+<div class="form-group row">
+<%= form.label :crew_size, class: "form-lable-col col-4" %>
+<div class="col-8">
+  <%= form.number_field :crew_size, class: "form-control" %>
+</div>
+</div>
+<div class="form-group row">
+<%= form.label :is_snv_lavalin, class: "form-lable-col col-4" %>
+<div class="col-8">
+  <%= form.check_box :is_snv_lavalin, class: "form-control" %>
+</div>
+</div>
+<div class="form-group row">
+<%= form.label :is_sub_contractor, class: "form-lable-col col-4" %>
+<div class="col-8">
+  <%= form.check_box :is_sub_contractor, class: "form-control" %>
+</div>
+</div>
+<div class="form-group row">
+<%= form.label :issued_datetime, class: "form-lable-col col-4" %>
+<div class="col-8">
+  <%= form.datetime_field :issued_datetime, class: "form-control" %>
+</div>
+</div>
+<div class="form-group row">
+<%= form.label :extended_datetime, class: "form-lable-col col-4" %>
+<div class="col-8">
+  <%= form.datetime_field :extended_datetime, class: "form-control" %>
+</div>
+</div>
+<div class="form-group row">
+<%= form.label :extended_by, class: "form-lable-col col-4" %>
+<div class="col-8">
+<%= form.select(:extended_by, User.all.map {|d| ["#{d.firstname} #{d.lastname}", d.id]}, {:include_blank => "Select"}, {:class => "form-control"} )%>
+</div>
+</div>
+<div class="form-group row">
+<%= form.label :emergency_meeting_point, class: "form-lable-col col-4" %>
+<div class="col-8">
+  <%= form.text_area :emergency_meeting_point, class: "form-control" %>
+</div>
+</div>
+
+<div class="form-group row">
+<%= form.label :location, class: "form-lable-col col-4" %>
+<div class="col-8">
+  <%= form.text_area :location, class: "form-control" %>
+</div>
+</div>
+
+<div class="form-group row">
+<%= form.label :description_of_work, class: "form-lable-col col-4" %>
+<div class="col-8">
+  <%= form.text_area :description_of_work, class: "form-control" %>
+</div>
+</div>
+
+<%= form.hidden_field :created_by, value: "#{current_user().id}"%>
+  <div class="actions">
+    <%=form.submit nil, class: "btn btn-sm btn-outline-primary mx-auto"%>
+  </div>
+<% end %>
