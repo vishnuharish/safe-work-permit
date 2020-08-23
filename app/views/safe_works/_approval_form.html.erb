@@ -1,6 +1,11 @@
-
+<style>
+    textarea{
+        background: transparent !important;
+        color: white !important;
+    }
+</style>
     <%= f.text_area :comments, class:"form-control", required: true%>
-    <%= f.submit "Approve", disable_with: 'Approveing...'%>
+    <%= f.submit "Approve", disable_with: 'Approveing...', class: "btn btn-sm btn-warning"%>
     <%= f.submit "Reject", disable_with: 'Rejecting...'%>
 
 
