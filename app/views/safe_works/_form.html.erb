@@ -1,3 +1,11 @@
+<style>
+  .bg-warning, .btn-warning{
+    background-color: #da960f !important;
+  }
+</style>
+
+<h2 class="h2 text-warning text-center">Safe Work Permit Form</h2>
+
 <%= form_with(model: safe_work, local: true) do |form| %>
   <% if safe_work.errors.any? %>
     <div id="error_explanation">
@@ -10,71 +18,97 @@
       </ul>
     </div>
   <% end %>
-  <div class="form-group row">
-  <%= form.label :company_name, class: "form-lable-col col-4" %>
-  <div class="col-8">
-    <%= form.text_field :company_name, class: "form-control" %>
+
+  <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-12 pad ">
+          <label for="confinedspace"> CONFINED SPACE</label>
+          <input type="checkbox" id="confinedspace" >
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12 pad">
+        <label for="hotwork"> HOT WORK</label>
+        <input type="checkbox" id="hotwork" >
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12 pad">
+        <label for="excavation"> EXCAVATION</label>
+        <input type="checkbox" id="excavation" >
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12 pad ">
+        <label for="de_energization">DE-ENERGIZATION (LOTO)</label>
+        <input type="checkbox" id="de_energization">
+      </div>
   </div>
-</div>
-<div class="form-group row">
-<%= form.label :crew_size, class: "form-lable-col col-4" %>
-<div class="col-8">
-  <%= form.number_field :crew_size, class: "form-control" %>
-</div>
-</div>
-<div class="form-group row">
-<%= form.label :is_snv_lavalin, class: "form-lable-col col-4" %>
-<div class="col-8">
-  <%= form.check_box :is_snv_lavalin, class: "form-control" %>
-</div>
-</div>
-<div class="form-group row">
-<%= form.label :is_sub_contractor, class: "form-lable-col col-4" %>
-<div class="col-8">
-  <%= form.check_box :is_sub_contractor, class: "form-control" %>
-</div>
-</div>
-<div class="form-group row">
-<%= form.label :issued_datetime, class: "form-lable-col col-4" %>
-<div class="col-8">
-  <%= form.datetime_field :issued_datetime, class: "form-control" %>
-</div>
-</div>
-<div class="form-group row">
-<%= form.label :extended_datetime, class: "form-lable-col col-4" %>
-<div class="col-8">
-  <%= form.datetime_field :extended_datetime, class: "form-control" %>
-</div>
-</div>
-<div class="form-group row">
-<%= form.label :extended_by, class: "form-lable-col col-4" %>
-<div class="col-8">
-<%= form.select(:extended_by, User.all.map {|d| ["#{d.firstname} #{d.lastname}", d.id]}, {:include_blank => "Select"}, {:class => "form-control"} )%>
-</div>
-</div>
-<div class="form-group row">
-<%= form.label :emergency_meeting_point, class: "form-lable-col col-4" %>
-<div class="col-8">
-  <%= form.text_area :emergency_meeting_point, class: "form-control" %>
-</div>
-</div>
 
-<div class="form-group row">
-<%= form.label :location, class: "form-lable-col col-4" %>
-<div class="col-8">
-  <%= form.text_area :location, class: "form-control" %>
-</div>
-</div>
+  <div class=" row bg-warning text-white font-weight-bold ">PART I:WORK DETAILS</div>
 
-<div class="form-group row">
-<%= form.label :description_of_work, class: "form-lable-col col-4" %>
-<div class="col-8">
-  <%= form.text_area :description_of_work, class: "form-control" %>
-</div>
-</div>
+    <div class="row pt-4">
+          <div class="col-md-4 col-sm-12 form-group">
+            <%= form.label :is_snv_lavalin, class: "form-lable-col" %>
+            <%= form.check_box :is_snv_lavalin , class: "col-4" %>
+          </div>
+          <div class="col-md-4 col-sm-12 form-group">
+            <%= form.label :is_sub_contractor, class: "form-lable-col" %>
+            <%= form.check_box :is_sub_contractor, class: "col-4" %>
+          </div>
+          <div class="col-md-4 col-sm-12 form-group">
+            <div class="row">
+              <%= form.label :crew_size, class: "form-lable-col col-4" %>
+              <%= form.number_field :crew_size, class: "form-control col-5" %>
+            </div>
+          </div>
+    </div>
+    <div class="row pt-4">
+      <div class="col-4 ">
+        <div class="row form-group">
+          <%= form.label :issued_datetime, class: "form-lable-col col-4" %>
+          <%= form.datetime_field :issued_datetime, class: "form-control col-5" %>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="row form-group">
+          <label for="date_expired" class="form-lable-col col-4">Date expired</label>
+          <input  type="datetime-local" id="expired" name="expired" class="form-control col-5">
+        </div>
+      </div>
+      <div class="col-4">
+          <div class="row form-group">
+            <%= form.label :extended_datetime, class: "form-lable-col col-4" %>
+            <%= form.datetime_field :extended_datetime, class: "form-control col-5" %>
+          </div>
+      </div>
+    </div>
+    <div class="row pt-4">
+        <div class="col-4">
+          <div class="row form-group">
+            <%= form.label :extended_by, class: "form-lable-col col-4" %>
+            <%= form.select(:extended_by, User.all.map {|d| ["#{d.firstname} #{d.lastname}", d.id]}, {:include_blank => "Select"}, {:class => "form-control col-5"} )%>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="row form-group">
+            <%= form.label :emergency_meeting_point, class: "form-lable-col col-4" %>
+            <%= form.text_field :emergency_meeting_point, class: "form-control col-5" %>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="row form-group">
+            <%= form.label :location, class: "form-lable-col col-4" %>
+            <%= form.text_field :location, class: "form-control col-5" %>
+          </div>
+        </div>
+    </div>
+    <div class="row pt-4">
+      <div class="col-8 ">
+          <div class="row">
+              <%= form.label :description_of_work, "Description",class: "form-lable-col col-2" %>
+              <%= form.text_area :description_of_work, class: "form-control col-3" %>
+          </div>
+      </div>
+    </div>
 
-<%= form.hidden_field :created_by, value: "#{current_user().id}"%>
-  <div class="actions">
-    <%=form.submit nil, class: "btn btn-sm btn-warning mx-auto"%>
+  <%= form.hidden_field :created_by, value: "#{current_user().id}"%>
+  <div class="row">
+     <div class=" mx-auto">
+      <%=form.submit nil, class: "btn btn-sm btn-warning"%>
+     </div>
   </div>
 <% end %>

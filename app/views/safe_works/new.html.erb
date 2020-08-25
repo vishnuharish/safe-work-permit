@@ -4,9 +4,11 @@
         color: white !important;
     }
 </style>
-<div class="card" style="background: #0000005c;">
-<div class="card-body">
-<%= render 'form', safe_work: @safe_work %>
-</div>
+<div class="row pt-4">
+    <div class="card col-10 mx-auto" style="background: #0000005c;">
+        <div class="card-body">
+            <%= render 'form', safe_work: @safe_work %>
+        </div>
+    </div>
 </div>
 <%= link_to 'Back', safe_works_path %>

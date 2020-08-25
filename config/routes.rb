@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :safe_works do
     put "/approve" => 'safe_works#approvals'
   end
-  root to: 'dummy#index'
+  root to: 'safe_works#index'
 
   #Login
   get '/login' => 'sessions#new'
